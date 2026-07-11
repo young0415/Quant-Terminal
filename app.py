@@ -156,7 +156,6 @@ st.markdown("""
     
     hr { border-color: #334155 !important; margin-top: 1.5rem; margin-bottom: 1.5rem; }
     .formula-box { background-color: #020617; border-left: 4px solid #0EA5E9; padding: 16px; border-radius: 4px; margin-top: 10px; margin-bottom: 20px; }
-    .result-box { background-color: #1E293B; border: 2px dashed #F59E0B; padding: 16px; border-radius: 8px; margin-top: 20px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -423,7 +422,6 @@ elif st.session_state.current_page == "page_b":
     st.divider()
 
     # --- 步驟 2：核心參數與【正確答案目標】動態設定 ---
-    # ✅ 依照你的專業洞見，綜合大盤換回最準確的 加權指數 (^TWII)
     all_tickers = {
         "台積電 ADR": "TSM", "費城半導體": "^SOX", "那斯達克": "^IXIC", 
         "S&P 500": "^GSPC", "道瓊工業": "^DJI", "VIX 恐慌指數": "^VIX", 
@@ -631,7 +629,6 @@ elif st.session_state.current_page == "page_b":
                 actual_chg = row_data['Target_Next']
                 next_date_str = next_ts.strftime('%Y/%m/%d')
                 
-                st.markdown("<div class='result-box'>", unsafe_allow_html=True)
                 st.markdown(f"<h4 style='color:#F8FAFC !important;'>🎯 真實市場對答案 (Reality Check - 錨定目標：{target_answer_name})</h4>", unsafe_allow_html=True)
                 
                 if vix_val > 25:
@@ -644,7 +641,6 @@ elif st.session_state.current_page == "page_b":
                     st.info(f"**模型建議：** 盤整雜訊觀望。\n\n**隔日 ({next_date_str}) {target_answer_name} 實際走勢：** `{actual_chg:+.2f}%` (符合盤整預期)")
                 else:
                     st.error(f"##### ❌ 【預測失準】 指標背離。模型給出明確方向，但隔日 ({next_date_str}) {target_answer_name} 實際走勢為 {actual_chg:+.2f}%。")
-                st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 🛡️ 專案 C：動態風險對沖 (Hedging) 系統
